@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS -->
+    <!-- https://cdnjs.com/libraries/twitter-bootstrap/5.0.0-beta1 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta1/css/bootstrap.min.css" />
+
+    <!-- Icons: https://getbootstrap.com/docs/5.0/extend/icons/ -->
+    <!-- https://cdnjs.com/libraries/font-awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+    <link rel="stylesheet" href="style.css">
+    <title>Club-Stars</title>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light p-3">
+
+            <div class="container-fluid">
+                <div class="logo">Club_Stars</div>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">AboutUs</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Blog</a>
+                        </li>
+                    </ul>
+
+                    <p><a href="#" class="btn btn-primary btn-lg me-3" data-bs-toggle="modal" data-bs-target="#login-modal">Login</a></p>
+                    <p><a href="#" class="btn btn-primary btn-lg sign-up" data-bs-toggle="modal" data-bs-target="#sign-up-modal">Sign up</a></p>
+                </div>
+            </div>
+        </nav>
+        <!-- Modal -->
+        <div class="modal fade " id="login-modal" tabindex="-1" aria-labelledby="login-modal" aria-hidden="true">
+            <div class="modal-dialog align-items-center">
+                <div class="modal-content">
+                    <div class="modal-header text-center m-auto mb-5">
+                        <div class="logo">Club_Stars</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="text-center m-auto">
+                                <h4 class="text-uppercase text-center">Login</h4>
+                            </div>
+                            <form action="#" method="post">
+                                <input type="hidden" name="csrftoken" value="e">
+                                <div class="form-group mb-3">
+                                    <label for="lastname">Last Name </label>
+                                    <input type="text" name="lastname" placeholder="Enter last name" class="form-control" required="">
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="password">Password</label>
+                                    <div class="input-group bg-light" id="show_hide_password">
+                                        <input type="password" class="form-control" id="password" value="Passwords" name="password" placeholder="Enter Password" required="">
+                                        <div class="input-group-addon">
+                                            <a href=""><i class="fa fa-lg fa-eye" aria-hidden="true"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <div class="custom-control custom-checkbox checkbox-success">
+                                        <input type="checkbox" class="custom-control-input" id="checkbox-signin" checked>
+                                        <label class="custom-control-label" for="checkbox-signin">Remember me</label>
+                                    </div>
+                                </div>
+                                <div class="form-group mb-0 text-center">
+                                    <button class="btn btn-primary btn-block" type="submit" name="submit"> Log In </button>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade " id="sign-up-modal" tabindex="-1" aria-labelledby="login-modal" aria-hidden="true">
+            <div class="modal-dialog align-items-center">
+                <div class="modal-content">
+                    <div class="modal-header logo-head m-auto">
+                        <div class="logo">Club_Stars</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="text-center m-auto">
+                                <h4 class="text-uppercase text-center">Sign up</h4>
+                                <p>Please fill in this form to create an account.</p>
+                            </div>
+                            <form action="#" onsubmit="return validateForm()" method="post">
+                                <div class="form-group mb-2">
+                                    <label for="firstname">First Name <span class="star">*</span></label>
+                                    <input type="text" name="firstname" placeholder="Enter first name" class="form-control" required="">
+                                </div>
+                                <div class="form-group mb-2">
+                                    <label for="lastname">Last Name <span class="star">*</span></label>
+                                    <input type="text" name="lastname" placeholder="Enter last name" class="form-control" required="">
+                                </div>
+                                <input type="hidden" name="csrftoken" value="ea49375f43c7e6a59c77df1e4de562b3f1350124eeb70e5d5124e4ce3b5251c2b4d12e9aaf2a3ddc618c178c8dc4620b">
+                                <div class="form-group mb-2">
+                                    <label for="emailaddress">Age <span class="star">*</span> </label>
+                                    <input type="number" id="age" name="age" class="form-control" required="">
+                                </div>
+                                <div class="form-group mb-2">
+                                    <label for="password">Current Level <span class="star">*</span></label>
+                                    <input type="number" class="form-control" id="level" value="Level" name="level" placeholder="Enter Level" required="">
+                                </div>
+                                <div class="form-group mb-2">
+                                    <label for="password">Favourite Club <span class="star">*</span></label>
+                                    <input type="text" class="form-control" id="level" value="club" name="club" placeholder="Enter Favourite club" required="">
+                                </div>
+                                <div class="form-group mb-2">
+                                    <label for="password"> Password <span class="star">*</span></label>
+                                    <div class="input-group bg-light" id="show_hide_password">
+                                        <input type="password" class="form-control" id="confirm-password" value="Passwords" name="confirm-password" placeholder="Confirm Password" required="">
+                                        <div class="input-group-addon">
+                                            <a href=""><i class="fa fa-lg fa-eye" aria-hidden="true"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group mb-1 text-center">
+                                    <button class="btn btn-primary btn-block" type="submit" value="submit" onclick="myFunction()" name="submit"> Sign up </button>
+                                </div>
+                                <div id="msg">Congratulations, you have sign up succesfully!!!</div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="main-text">
+        <p class="text">Welcome to Club_Stars</p>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta1/js/bootstrap.bundle.min.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
