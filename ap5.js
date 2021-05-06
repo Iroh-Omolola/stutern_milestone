@@ -8,12 +8,11 @@
 // }
 // myFunction();
 // Array.from(document.querySelectorAll('#registrationForm input')).reduce((acc, input => ({...acc, [input.id]: input.value })), {})
-
+let emptyArray = [];
 //Register Constructor
 
 class Register {
-    constructor(id, firstname, lastname, age, level, favouriteClub) {
-        this.id = id;
+    constructor(firstname, lastname, age, level, favouriteClub) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.age = age;
@@ -26,14 +25,14 @@ class Register {
 
 class UI {
     // Add Book To List
-    addRegisterToList = (register) => {
+    addRegisterToList = (json) => {
             const list = document.getElementById('register-list');
 
             //Create tr element
             const row = document.createElement('tr');
             //Insert cols
             row.innerHTML = `
-            <td>${register.id}</td>
+      
         <td>${register.firstname}</td>
         <td>${register.lastname}</td>
         <td>${register.age}</td>
@@ -46,24 +45,23 @@ class UI {
         }
         //Show Alert
     showAlert = (message, className) => {
-        //Create div
-        const div = document.createElement('div');
-        div.className = `alert ${className}`;
-        //Add text
-        div.appendChild(document.createTextNode(message));
-        //Get parent
-        const container = document.querySelector('.container');
-        //Get form
-        const form = document.querySelector('#my-form');
-        //Insert alert
-        container.insertBefore(div, form);
-        //Timeout after
-        setTimeout(function() {
-            document.querySelector('.alert').remove();
-        }, 3000);
-    }
-
-    //Delete Register
+            //Create div
+            const div = document.createElement('div');
+            div.className = `alert ${className}`;
+            //Add text
+            div.appendChild(document.createTextNode(message));
+            //Get parent
+            const container = document.querySelector('.register-form');
+            //Get form
+            const form = document.querySelector('#my-form');
+            //Insert alert
+            container.insertBefore(div, form);
+            //Timeout after
+            setTimeout(function() {
+                document.querySelector('.alert').remove();
+            }, 3000);
+        }
+        //Delete Register
     deleteRegister = (target) => {
             if (target.className === 'delete') {
                 target.parentElement.parentElement.remove();
@@ -79,23 +77,17 @@ class UI {
     }
 }
 
-//Event Listeners for add book
-document.getElementById('my-form').addEventListener('submit', submitFunction);
 
 function submitFunction(e) {
     e.preventDefault();
     //Get form values
-    const id = Date.now().toString(),
-        firstname = document.getElementById('firstname').value,
+    const firstname = document.getElementById('firstname').value,
         lastname = document.getElementById('lastname').value,
         age = document.getElementById('age').value,
         level = document.getElementById('level').value,
         favouriteClub = document.getElementById('favouriteClub').value;
     //Instantiate book
-    const json = JSON.stringify(new Register(id, firstname, lastname, age, level, favouriteClub));
-
-    let register = JSON.parse(json);
-
+    const register = new Register(firstname, lastname, age, level, favouriteClub);
 
     //Instantiate UI
     const ui = new UI();
@@ -109,13 +101,14 @@ function submitFunction(e) {
         ui.addRegisterToList(register);
 
         //Show success
-        ui.showAlert('Registered Successfully!', 'success');
+        ui.showAlert('Book Added!', 'success');
 
         //Clear fields
         ui.clearFields();
-        //
-        ui.deleteRegister(target);
     }
 
-
+    emptyArray.push(register);
+    let myJson = JSON.stringify(emptyArray);
 }
+//Event Listeners for add book
+document.getElementById('my-form').addEventListener('submit', submitFunction);
