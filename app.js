@@ -23,7 +23,6 @@ class Register {
 
 }
 //UI Constructor
-
 class UI {
     // Add Book To List
     addRegisterToList = (register) => {
@@ -79,10 +78,11 @@ class UI {
     }
 }
 
-//Event Listeners for add book
-document.getElementById('my-form').addEventListener('submit', submitFunction);
+//Event Listeners for add register list
+document.getElementById('my-form').addEventListener('submit', submitAddFunction);
 
-function submitFunction(e) {
+//Add Register function
+function submitAddFunction(e) {
     e.preventDefault();
     //Get form values
     const id = Date.now().toString(),
@@ -113,9 +113,25 @@ function submitFunction(e) {
 
         //Clear fields
         ui.clearFields();
-        //
-        ui.deleteRegister(target);
+
     }
+
+
+}
+
+
+//Event listener for delete register list
+document.getElementById('register-list').addEventListener('click', clickDeleteFunction);
+
+// Delete Function
+function clickDeleteFunction(e) {
+    e.preventDefault();
+    //Instantiate UI for delete
+    const ui = new UI();
+
+
+    ui.deleteRegister(e.target);
+
 
 
 }
